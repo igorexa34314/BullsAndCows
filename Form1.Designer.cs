@@ -39,18 +39,19 @@ namespace BullsAndCows
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(59, 394);
+			this.textBox1.Location = new System.Drawing.Point(44, 320);
+			this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(100, 22);
+			this.textBox1.Size = new System.Drawing.Size(76, 20);
 			this.textBox1.TabIndex = 0;
 			this.textBox1.Text = "Ответ";
-			this.textBox1.Visible = false;
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(247, 64);
+			this.button1.Location = new System.Drawing.Point(185, 52);
+			this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(116, 50);
+			this.button1.Size = new System.Drawing.Size(87, 41);
 			this.button1.TabIndex = 1;
 			this.button1.Text = "Ввести";
 			this.button1.UseVisualStyleBackColor = true;
@@ -58,9 +59,10 @@ namespace BullsAndCows
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(98, 78);
+			this.textBox2.Location = new System.Drawing.Point(74, 63);
+			this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(130, 22);
+			this.textBox2.Size = new System.Drawing.Size(98, 20);
 			this.textBox2.TabIndex = 2;
 			// 
 			// dataGridView1
@@ -71,20 +73,22 @@ namespace BullsAndCows
 			this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.ColumnHeadersVisible = false;
-			this.dataGridView1.Location = new System.Drawing.Point(452, 32);
+			this.dataGridView1.Location = new System.Drawing.Point(339, 26);
+			this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.ReadOnly = true;
 			this.dataGridView1.RowHeadersVisible = false;
 			this.dataGridView1.RowHeadersWidth = 51;
 			this.dataGridView1.RowTemplate.Height = 24;
-			this.dataGridView1.Size = new System.Drawing.Size(308, 358);
+			this.dataGridView1.Size = new System.Drawing.Size(231, 291);
 			this.dataGridView1.TabIndex = 3;
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(187, 225);
+			this.button2.Location = new System.Drawing.Point(140, 183);
+			this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(151, 49);
+			this.button2.Size = new System.Drawing.Size(113, 40);
 			this.button2.TabIndex = 4;
 			this.button2.Text = "Я сдаюсь!";
 			this.button2.UseVisualStyleBackColor = true;
@@ -92,14 +96,15 @@ namespace BullsAndCows
 			// 
 			// Form1
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(600, 366);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.textBox2);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.textBox1);
+			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.Name = "Form1";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Быки и коровы";

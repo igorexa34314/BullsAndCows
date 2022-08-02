@@ -29,6 +29,7 @@ namespace BullsAndCows
 			Username = Convert.ToString(textBox1.Text);
 			NumCount = Convert.ToInt32(numericUpDown1.Value);
 
+
 			Form1 f1 = new Form1(Username, NumCount);
 			f1.Left = this.Left; // задаём открываемой форме позицию слева равную позиции текущей формы
 			f1.Top = this.Top; // задаём открываемой форме позицию сверху равную позиции текущей формы

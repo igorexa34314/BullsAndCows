@@ -16,17 +16,7 @@ namespace BullsAndCows
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			DialogResult result = MessageBox.Show(
-				"Начнем игру?",
-				"Новая игра",
-				MessageBoxButtons.YesNo,
-				MessageBoxIcon.Question,
-				MessageBoxDefaultButton.Button1,
-				MessageBoxOptions.DefaultDesktopOnly);
-			if (result == DialogResult.Yes)
-				Application.Run(new StartForm());
-			else
-				Application.Exit();
+			Application.Run(new StartForm());
 		}
 	}
 }

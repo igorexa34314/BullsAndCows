@@ -14,8 +14,9 @@ namespace BullsAndCows
 	{
 		uint HiddenNum;
 		int dvcount = 0;
-		int NumCount = 0;
-
+		int NumCount;
+		int AttemptCount;
+		string Username = "";
 		class Score
 		{
 			public byte GuessedNumCount = 0;
@@ -38,18 +39,21 @@ namespace BullsAndCows
 		public Form1(string user, int ncount)
 		{
 			InitializeComponent();
-			StartNewGame();
 			NumCount = ncount;
-			this.Text = "Быки и коровы (" + user + ")";
+			Username = user;
+			this.Text = "Быки и коровы (" + Username + ")";
+			StartNewGame(NumCount);
 		}
 
-		static uint InitRandNum()
+		static uint InitRandNum(int ncount)
 		{
 			Random r = new Random();
 			uint RandNum;
+			int a = Convert.ToInt32(Math.Pow(10, (ncount - 1)));
+			int b = Convert.ToInt32(Math.Pow(10, ncount) - 1);
 			do
 			{
-				RandNum = (uint)r.Next(1000, 9999);
+				RandNum = (uint)r.Next(a, b);
 			}
 			while (!(CheckNumForRepeat(RandNum.ToString())));
 			return RandNum;
@@ -69,12 +73,12 @@ namespace BullsAndCows
 		}
 
 		// Для предполагаемого числа
-		static bool CheckNumForValid(string strnum)
+		static bool CheckNumForValid(string strnum, int NumCount)
 		{
 			uint[] arr = ToNumArrray(strnum);
-			if (arr == null)
+			if( (arr == null) || (strnum.Length != NumCount) )
 			{
-				MessageBox.Show("Введите натуральное 4-значное число");
+				MessageBox.Show($"Введите натуральное {NumCount}-значное число");
 				return false;
 			}
 			else if (!(CheckNumForRepeat(strnum)))
@@ -125,12 +129,13 @@ namespace BullsAndCows
 		private void button1_Click(object sender, EventArgs e)
 		{
 			string SupposedStr = Convert.ToString(textBox2.Text);
-			if (CheckNumForValid(SupposedStr)) 
+			if (CheckNumForValid(SupposedStr, NumCount))
 				CalculateScore(ToNum(SupposedStr), HiddenNum);
 		}
 
 		void CalculateScore(uint SupposedNum, uint GuessedNum)
 		{
+			AttemptCount++;
 			Score score = new Score();
 			uint[] SupposedArr = ToNumArrray(SupposedNum.ToString());
 			uint[] GuessedArr = ToNumArrray(GuessedNum.ToString());
@@ -150,33 +155,36 @@ namespace BullsAndCows
 			dataGridView1.Rows[dvcount].Cells[0].Value = SupposedNum;
 			if ((score.GuessedNumCount == score.GuessedOrderCount) && (score.GuessedOrderCount == GuessedNum.ToString().Length))
 			{
-				MessageBox.Show("Вы угадали число!!");
-				DialogResult result = MessageBox.Show(
-				"Вы хотитете начать игру заново?",
-				"Новая игра",
-				MessageBoxButtons.YesNo,
-				MessageBoxIcon.Question,
-				MessageBoxDefaultButton.Button1,
-				MessageBoxOptions.DefaultDesktopOnly);
-				if (result == DialogResult.Yes)
-				{
-					StartNewGame();
-					this.TopMost = true;
-				}
-				else
-				{
-					Close();
-				}
-				
+				MessageBox.Show("Вы угадали число!!\nКоличество попыток - " + AttemptCount);
+				AskNewGame();
 			}
 			else
 				dvcount++;
 		}
-			
-		void StartNewGame() {
-			HiddenNum = InitRandNum();
+
+		void AskNewGame() 
+		{
+			DialogResult result = MessageBox.Show(
+			"Вы хотитете начать игру заново?",
+			"Новая игра",
+			MessageBoxButtons.YesNo,
+			MessageBoxIcon.Question,
+			MessageBoxDefaultButton.Button1,
+			MessageBoxOptions.DefaultDesktopOnly);
+			if (result == DialogResult.Yes)
+			{
+				StartNewGame(NumCount);
+				this.TopMost = true;
+			}
+			else
+				this.Close();
+		}
+
+		void StartNewGame(int ncount) {
+			HiddenNum = InitRandNum(ncount);
 			textBox1.Text = HiddenNum.ToString();
 			dvcount = 0;
+			AttemptCount = 0;
 			dataGridView1.ColumnCount = 2;
 			dataGridView1.Rows.Clear();
 			textBox2.Clear();
@@ -185,7 +193,7 @@ namespace BullsAndCows
 		private void Surrender(object sender, EventArgs e)
 		{
 			MessageBox.Show("Какой же вы слабый!\nЗагаданное число: " + HiddenNum.ToString());
-			StartNewGame();
+			AskNewGame();
 		}
 
 		private void Form1_FormClosed(object sender, FormClosedEventArgs e)
